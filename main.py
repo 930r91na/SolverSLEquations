@@ -1,16 +1,20 @@
-# This is a sample Python script.
+import numpy as np
+from sympy import Matrix, pprint
+from solution_type import *
 
-# Press Mayús+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+def main():
+    print("Menu to input a matrix A and its vector b")
+    m = int(input("Enter the number of rows/columns for the square matrix A: "))
+    A = input_matrix(m, m)
+    print("Inputted Matrix A:")
+    pprint(Matrix(A))
+    b = input_vector(m)
+    print("Inputted Vector b:")
+    pprint(Matrix(b))
+    print(get_solution_type(A, b))
+
+if __name__ == "__main__":
+    main()
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
