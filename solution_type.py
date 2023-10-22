@@ -27,7 +27,7 @@ def get_solution_type(a_mat, b):
         if all([elem == 0 for elem in rref_matrix[-1, :-1]]) and rref_matrix[-1, -1] != 0:
             return "The system has no solution."
         elif all([elem == 0 for elem in rref_matrix[-1, :]]):
-            # interpret_rref(rref_matrix);
+            interpret_rref(rref_matrix);
             return "The system has infinitely many solutions."
         else:
             return "The situation is ambiguous. Check the coefficient matrix and the independent term vector."
