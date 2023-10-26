@@ -3,7 +3,6 @@ from sympy import Matrix, pprint, nsimplify
 
 # from solution_infinite import interpret_rref
 def interpret_rref(rref_matrix):
-    print ("Hi I am entering the interpretation")
     num_rows, num_cols = rref_matrix.shape
     solutions = []
     free_vars_positions = set(range(num_cols - 1))  # Excluding the constant column
@@ -41,8 +40,8 @@ def get_solution_type(a_mat, b):
     det_a = np.linalg.det(a_mat)
     # Print the determinant of the matrix A
     print("The determinant of the matrix A is : ", det_a)
-
-    if det_a == 0:
+    tolerance = 1e-3
+    if abs(det_a) < tolerance:
         augmented_a = Matrix(np.column_stack((a_mat, b)))
         # To rationalize the augmented matrix (solves the floating point precision problem
         augmented_a = augmented_a.applyfunc(lambda x: nsimplify(x, rational=True))
