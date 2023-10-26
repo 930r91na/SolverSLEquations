@@ -1,10 +1,8 @@
-import numpy as np
-from sympy import Matrix, pprint
 from solution_type import *
 
 
 def main():
-    print("Menu to input a matrix mat_a and its vector b")
+    print("\n------------------- Menu to input a matrix mat_a and its vector b ------------------\n")
     m = int(input("Enter the number of rows/columns for the square matrix mat_a: "))
     mat_a = input_matrix(m, m)
     print("Inputted Matrix mat_a:")
@@ -16,4 +14,10 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    while True:
+        main()
+
+        ent = input("Do you wish to enter another augmented matrix? (Enter 'y' or 'Y' to keep going): ")
+
+        if ent.lower() != 'y':
+            break
