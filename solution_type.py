@@ -41,21 +41,22 @@ def get_solution_type(a_mat, b):
     # Print the determinant of the matrix A
     print("The determinant of the matrix A is : ", det_a)
     tolerance = 1e-3
+
+    augmented_a = Matrix(np.column_stack((a_mat, b)))
+    # To rationalize the augmented matrix (solves the floating point precision problem
+    augmented_a = augmented_a.applyfunc(lambda x: nsimplify(x, rational=True))
+
+    # Print the augmented matrix
+    print("The augmented matrix is: ")
+    pprint(augmented_a)
+
+    rref_matrix = augmented_a.rref()[0]
+
+    # Print the reduced row echelon form of the augmented matrix
+    print("The reduced row echelon form of the augmented matrix is: ")
+    pprint(rref_matrix)
+
     if abs(det_a) < tolerance:
-        augmented_a = Matrix(np.column_stack((a_mat, b)))
-        # To rationalize the augmented matrix (solves the floating point precision problem
-        augmented_a = augmented_a.applyfunc(lambda x: nsimplify(x, rational=True))
-
-        # Print the augmented matrix
-        print("The augmented matrix is: ")
-        pprint(augmented_a)
-
-        rref_matrix = augmented_a.rref()[0]
-
-        # Print the reduced row echelon form of the augmented matrix
-        print("The reduced row echelon form of the augmented matrix is: ")
-        pprint(rref_matrix)
-
         if all([elem == 0 for elem in rref_matrix[-1, :-1]]) and rref_matrix[-1, -1] != 0:
             return "The system has no solution."
         elif all([elem == 0 for elem in rref_matrix[-1, :]]):
