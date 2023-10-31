@@ -7,6 +7,7 @@ def interpret_rref(rref_matrix):
     solutions = []
     free_vars_positions = set(range(num_cols - 1))  # Excluding the constant column
 
+
     # Identify pivot variables and remove them from the free_vars_positions set
     for i in range(num_rows):
         row = rref_matrix[i, :]
@@ -27,6 +28,8 @@ def interpret_rref(rref_matrix):
         for j in free_vars_positions:
             if row[j] != 0:
                 expression += f"{-row[j]}x{j + 1} + "
+        if row[-1] != 0:
+            expression += str(row[-1])
         expression = expression.rstrip(" + ")
         solutions.append(expression)
 
